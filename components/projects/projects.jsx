@@ -34,6 +34,7 @@ const Projects = () => {
           <Button title="new project" />
         </View>
         <View>
+          {/* show loading icon if the fetching delayed */}
           {projects.length == 0 ? (
             <View
               style={{
