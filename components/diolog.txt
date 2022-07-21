@@ -1,0 +1,79 @@
+<Provider>
+          <>
+            <Button
+              title={<MyText text={"Open Alert Dialog"} color="white" />}
+              style={{ margin: 16, width: 190 }}
+              onPress={() => setVisible(true)}
+            />
+            <Dialog visible={visible} onDismiss={() => setVisible(false)}>
+              <DialogHeader
+                title={<MyText text={"Dialog Header"} size={20} />}
+              />
+              <DialogContent>
+                <MyText
+                  text=" Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum
+               eligendi inventore, laboriosam laudantium minima minus nesciunt
+               pariatur sequi."
+                />
+                <TextInput
+                  placeholder="first name"
+                  style={{
+                    borderWidth: 1,
+                    borderColor: "purple",
+                    paddingVertical: 4,
+                    paddingHorizontal: 12,
+                    borderRadius: 5,
+                  }}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  title="Cancel"
+                  compact
+                  variant="text"
+                  onPress={() => setVisible(false)}
+                />
+                <Button
+                  title="Ok"
+                  compact
+                  variant="text"
+                  onPress={() => setVisible(false)}
+                />
+              </DialogActions>
+            </Dialog>
+          </>
+        </Provider>
+
+
+         <View
+          style={{
+            backgroundColor: "white",
+            position: "absolute",
+            left: "0%",
+            width: "70%",
+            height: "100%",
+            elevation: 5,
+          }}
+        >
+          <View
+            style={{
+              height: "30%",
+              backgroundColor: "blue",
+              justifyContent: "flex-end",
+            }}
+          >
+            <MyText text={"username"} />
+          </View>
+
+          <View
+            style={{
+              padding: 20,
+            }}
+          >
+            {TapButton(currentTab, setCurrentTab, "Dashboard", "🧦")}
+            {TapButton(currentTab, setCurrentTab, "Projects", "🇸🇴 ")}
+            {TapButton(currentTab, setCurrentTab, "Tasks", "🇾🇪 ")}
+            {TapButton(currentTab, setCurrentTab, "Users", "🇸🇦 ")}
+            {TapButton(currentTab, setCurrentTab, "Roles", "🇦🇪 ")}
+          </View>
+        </View>
