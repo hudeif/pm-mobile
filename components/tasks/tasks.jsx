@@ -10,16 +10,38 @@ import {
 import TaskCard from "./taskCard";
 import { url } from "../../config";
 import MyText from "../common/myText";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [logged, setLogged] = useState(null);
+
+  const getLoggedUser = async () => {
+    try {
+      let value = await AsyncStorage.getItem("loggedUser");
+      if (value !== null) {
+        setLogged(JSON.parse(value));
+      }
+    } catch (e) {}
+  };
 
   async function loadTasks() {
     const { data } = await axios.get(url + "task/list");
-    setTasks(data);
+
+    const filtered = data.filter((task) =>
+      task.users.includes(task.users.find((u) => u.id === logged.id))
+    );
+
+    if (logged.userRole.roleName === "admin") {
+      setTasks(data);
+    } else {
+      console.log(filtered);
+      setTasks(filtered);
+    }
   }
 
   useEffect(() => {
+    getLoggedUser();
     loadTasks();
   }, []);
 
